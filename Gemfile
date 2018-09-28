@@ -22,9 +22,17 @@ gem "puma", "~> 3.7"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+#
+gem "dry-struct", "0.5.1"
+gem "money", "~> 6.12.0"
+gem "monetize", "~> 1.9.0"
+gem "http", "~> 3.3.0"
+
 group :development, :test do
   gem "rspec", "~> 3.8"
   gem "rspec-rails", "~> 3.8"
+  gem "guard", "~> 2.14.2"
+  gem "guard-rspec", "~> 4.7.3"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", :platforms => [:mri, :mingw, :x64_mingw]
