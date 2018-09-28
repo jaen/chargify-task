@@ -21,7 +21,7 @@ module FakePay
       expect(client).not_to be_nil
     end
 
-    describe "API calls" do
+    describe "API calls", :vcr do
       it "allows to make a purchase request with card details" do
         response = client.purchase!(card_details_request)
 
@@ -44,7 +44,7 @@ module FakePay
       end
     end
 
-    describe "error handling" do
+    describe "error handling", :vcr do
       it "raises an error when the card number is invalid" do
         expect do
           client.purchase!(card_details_request(:card_number => "4242424242424241"))

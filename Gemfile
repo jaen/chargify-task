@@ -33,6 +33,8 @@ group :development, :test do
   gem "rspec-rails", "~> 3.8"
   gem "guard", "~> 2.14.2"
   gem "guard-rspec", "~> 4.7.3"
+  gem "vcr", "~> 4.0.0"
+  gem "webmock", "~> 3.4"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", :platforms => [:mri, :mingw, :x64_mingw]

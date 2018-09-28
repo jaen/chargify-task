@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.fakepay.io/purchase
+    body:
+      encoding: UTF-8
+      string: '{"amount":1000,"card_number":"4242424242424241","expiration_month":1,"expiration_year":2024,"zip_code":"10045","cvv":"123"}'
+    headers:
+      Authorization:
+      - Token FAKE-PAY-DUMMY-TOKEN
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - www.fakepay.io
+      User-Agent:
+      - http.rb/3.3.0
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Fri, 28 Sep 2018 20:14:54 GMT
+      Connection:
+      - close
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 6c493c65-d915-4b93-874d-88eee9b8706e
+      X-Runtime:
+      - '0.024726'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":null,"success":false,"error_code":1000001}'
+    http_version: 
+  recorded_at: Fri, 28 Sep 2018 20:14:55 GMT
+recorded_with: VCR 4.0.0
