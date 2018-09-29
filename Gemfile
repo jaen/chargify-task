@@ -39,6 +39,8 @@ group :development, :test do
   gem "webmock", "~> 3.4"
   gem "sdoc", "~> 1.0.0"
   gem "annotate", "~> 2.7.4"
+  gem "factory_bot", "~> 4.11.1"
+  gem "factory_bot_rails", "~> 4.11.1"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", :platforms => [:mri, :mingw, :x64_mingw]
