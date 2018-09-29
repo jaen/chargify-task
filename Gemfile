@@ -29,12 +29,13 @@ gem "monetize", "~> 1.9.0"
 gem "http", "~> 3.3.0"
 
 group :development, :test do
-  gem "rspec", "~> 3.8"
-  gem "rspec-rails", "~> 3.8"
+  gem "rspec", "~> 3.8.0"
+  gem "rspec-rails", "~> 3.8.0"
   gem "guard", "~> 2.14.2"
   gem "guard-rspec", "~> 4.7.3"
   gem "vcr", "~> 4.0.0"
   gem "webmock", "~> 3.4"
+  gem "sdoc", "~> 1.0.0"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", :platforms => [:mri, :mingw, :x64_mingw]

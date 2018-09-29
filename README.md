@@ -1,24 +1,10 @@
-# README
+# chargify-task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Just your ye olde Railse applicatione for Chargify recruitment task.
 
-Things you may want to cover:
+The usual stuff works:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * `rails s` runs the app with Puma,
+  * `rails c` opens a Pry console with the application environment,
+  * `bundle exec guard` watches the tests,
+  * `rails rdoc:rdoc` builds documentation.
