@@ -26,6 +26,7 @@ gem "puma", "~> 3.7"
 gem "dry-struct", "0.5.1"
 gem "money", "~> 6.12.0"
 gem "monetize", "~> 1.9.0"
+gem "money-rails", "~> 1.12.0"
 gem "http", "~> 3.3.0"
 
 group :development, :test do
@@ -36,6 +37,7 @@ group :development, :test do
   gem "vcr", "~> 4.0.0"
   gem "webmock", "~> 3.4"
   gem "sdoc", "~> 1.0.0"
+  gem "annotate", "~> 2.7.4"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", :platforms => [:mri, :mingw, :x64_mingw]
