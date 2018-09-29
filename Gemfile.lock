@@ -87,6 +87,8 @@ GEM
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 0.4, >= 0.4.2)
     erubi (1.7.1)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.9.25)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -248,6 +250,7 @@ DEPENDENCIES
   binding_of_caller
   byebug
   dry-struct (= 0.5.1)
+  faker (~> 1.9.1)
   guard (~> 2.14.2)
   guard-rspec (~> 4.7.3)
   http (~> 3.3.0)

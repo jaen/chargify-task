@@ -14,3 +14,8 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular "shipping_address_details", "shipping_address_details"
+  inflect.irregular "card_details", "card_details"
+end

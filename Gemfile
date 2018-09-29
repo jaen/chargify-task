@@ -28,6 +28,7 @@ gem "money", "~> 6.12.0"
 gem "monetize", "~> 1.9.0"
 gem "money-rails", "~> 1.12.0"
 gem "http", "~> 3.3.0"
+gem "faker", "~> 1.9.1"
 
 group :development, :test do
   gem "rspec", "~> 3.8.0"
