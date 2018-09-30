@@ -1,6 +1,6 @@
 # chargify-task
 
-Just your ye olde Railse applicatione for Chargify recruitment task.
+Just your ye olde Railse applicatione for the Chargify recruitment task.
 
 The usual stuff works:
 
@@ -10,3 +10,8 @@ The usual stuff works:
   * `rails c` opens a Pry console with the application environment,
   * `bundle exec guard` watches the tests,
   * `rails rdoc:rdoc` builds documentation.
+
+Also has some unusual stuff:
+
+  * `logic/validators` is a directory of API parameters validations
+  * `logic/transactions` is a directory of API transactions, decoupled from persistence models.

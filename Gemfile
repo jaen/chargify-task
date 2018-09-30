@@ -23,12 +23,16 @@ gem "puma", "~> 3.7"
 # gem "rack-cors"
 
 #
-gem "dry-struct", "0.5.1"
+gem "dry-struct", "0.4.0"
+gem "dry-validation", "0.11.1"
+gem "hanami-validations", "~> 1.2.2"
+gem "dry-transaction", "0.13.0"
 gem "money", "~> 6.12.0"
 gem "monetize", "~> 1.9.0"
 gem "money-rails", "~> 1.12.0"
 gem "http", "~> 3.3.0"
 gem "faker", "~> 1.9.1"
+gem "carmen", "~> 1.1.1"
 
 group :development, :test do
   gem "rspec", "~> 3.8.0"
