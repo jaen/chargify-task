@@ -11,8 +11,10 @@ module Transactions
     attr_accessor :payment_params
 
     step   :validate
-    step   :build,   :with => Operations::BuildSubscriptionModel
+    step   :get_subscription_params
+    step   :build,                  :with => Operations::BuildSubscriptionModel
     tee    :persist!
+    step   :charge!,                :with => Operations::ChargeSubscription
 
     private
 
@@ -20,13 +22,44 @@ module Transactions
       Validators::CreateSubscription.new(params).validate
     end
 
-    def build(params)
-      super(params[:subscription])
+    ##
+    # Splits the subscription-related parameters from billing-related parameters and stores the latter
+    # in a field for use in charging the subscription further down the line.
+    #
+    # @param [Hash] params transaction input parameters.
+    #
+    def get_subscription_params(params)
+      subscription_params = params[:subscription]
+      self.payment_params = params[:payment]
+      Success(subscription_params)
     end
 
     def persist!(subscription)
       subscription.save!
       subscription.reload
+    end
+
+    def charge!(subscription)
+      result = super(subscription, :billing_details => self.payment_params[:billing_details])
+
+      map_fake_pay_failure(result)
+    end
+
+    ##
+    # Map FakePay client errors to a format matching the API response format.
+    #
+    def map_fake_pay_failure(result)
+      if result.failure?
+        case result.failure
+          when FakePay::Errors::InvalidCreditCardNumber;  Failure({:payment => {:billing_details => {:card_number => ["is invalid"]}}})
+          when FakePay::Errors::InvalidZipCode;           Failure({:payment => {:billing_details => {:zip_code => ["is invalid"]}}})
+          when FakePay::Errors::InsufficientFunds;        Failure({:payment => {:billing_details => {:card_number => ["has insufficient funds"]}}})
+          when FakePay::Errors::SecurityCodeCheckFailure; Failure({:payment => {:billing_details => {:security_code => ["is invalid"]}}})
+          when FakePay::Errors::ExpiredCard;              Failure({:payment => {:billing_details => {:expirationMonth => ["is expired"], :expirationYear => ["is expired"]}}})
+        end
+      else
+        result
+      end
     end
   end
 end

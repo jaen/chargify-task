@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.fakepay.io/purchase
+    body:
+      encoding: UTF-8
+      string: '{"amount":4900,"card_number":"1211-1221-1234-2201","expiration_month":3,"expiration_year":2021,"zip_code":"12345","cvv":"123"}'
+    headers:
+      Authorization:
+      - Token FAKE-PAY-DUMMY-TOKEN
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - www.fakepay.io
+      User-Agent:
+      - http.rb/3.3.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 03 Oct 2018 22:17:04 GMT
+      Connection:
+      - close
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"a5fe998264aae498893e89ebb2dd5417"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8edb0f5e-f4a1-44e1-a19c-83eac039fcdc
+      X-Runtime:
+      - '0.020676'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":"452fb6d199732dcd968575862c5394","success":true,"error_code":null}'
+    http_version: 
+  recorded_at: Wed, 03 Oct 2018 22:17:05 GMT
+recorded_with: VCR 4.0.0
