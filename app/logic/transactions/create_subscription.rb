@@ -21,7 +21,7 @@ module Transactions
     end
 
     def build(params)
-      super(params[:subscription].except(:billing_details))
+      super(params[:subscription])
     end
 
     def persist!(subscription)

@@ -2,7 +2,7 @@ module Validators
   ##
   # A validator for shipping details.
   #
-  class ShippingDetails < Base
+  class ShippingAddressDetails < Base
     validations do
       required(:name).filled(:min_size? => 1)
       required(:address).filled(:min_size? => 1)
@@ -27,12 +27,27 @@ module Validators
   ##
   # A validator for parameters required to create a subscription.
   #
+  # Of note is the fact that it requires either of +:billing_details+ or +:card_details_id+ to
+  # be filled for billing, but not both at the same time.
+  #
   class CreateSubscription < Base
     validations do
       required(:subscription).schema do
-        required(:shipping_address_details).schema(ShippingDetails)
-        required(:billing_details).schema(BillingDetails)
+        required(:shipping_address_details).schema(ShippingAddressDetails)
         required(:subscription_level_id).filled(:associated? => SubscriptionLevel)
+      end
+
+      required(:payment).schema do
+        optional(:billing_details).schema(BillingDetails)
+        optional(:card_details_id).filled(:associated? => CardDetails)
+
+        rule(:payment => {:card_details_id => [:billing_details, :card_details_id]}) do |billing_details, card_details_id|
+          value(:billing_details).filled? ^ value(:card_details_id).filled?
+        end
+
+        rule(:payment => {:billing_details => [:billing_details, :card_details_id]}) do |billing_details, card_details_id|
+          value(:billing_details).filled? ^ value(:card_details_id).filled?
+        end
       end
     end
   end

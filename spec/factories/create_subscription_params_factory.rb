@@ -16,6 +16,9 @@ FactoryBot.define do
     billing_details          { attributes_for(:billing_details_parameters, billing_details_attributes) }
     subscription_level_id    { SubscriptionLevel.pluck(:id).sample }
 
-    initialize_with { {:subscription => attributes} }
+    initialize_with do
+      {:subscription => attributes.except(:billing_details),
+       :payment => attributes.slice(:billing_details)}
+    end
   end
 end
