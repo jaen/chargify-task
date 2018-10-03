@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
   # The endpoint returns either validation error or a persisted {Subscription}[rdoc-ref:Subscription].
   #
   def create
-    run_transaction!(Transactions::CreateSubscription) do |on|
+    Transactions::CreateSubscription.new.run!(params.permit!) do |on|
       on.success do |subscription|
         render :status     => :created,
                :json       => subscription,
