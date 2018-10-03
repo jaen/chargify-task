@@ -13,6 +13,8 @@ module Transactions
     step   :validate
     step   :get_subscription_params
     step   :build,                  :with => Operations::BuildSubscriptionModel
+
+    around :in_transaction!,        :with => Operations::TransactionWrapper
     tee    :persist!
     step   :charge!,                :with => Operations::ChargeSubscription
 
