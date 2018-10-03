@@ -10,12 +10,14 @@ class SubscriptionsController < ApplicationController
     run_transaction!(Transactions::CreateSubscription) do |on|
       on.success do |subscription|
         render :status     => :created,
-               :json       => {:data => {:subscription => subscription}}
+               :json       => subscription,
+               :serializer => CreateSubscriptionSerializer
       end
 
       on.failure do |exception|
         render :status     => :unprocessable_entity,
-               :json       => {:errors => exception}
+               :json       => exception,
+               :serializer => ErrorSerializer
       end
     end
   end
