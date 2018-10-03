@@ -21,3 +21,6 @@
 
 spec/examples.txt
 doc/rdoc
+.yardoc
+doc/
+^doc/.gitkeep
