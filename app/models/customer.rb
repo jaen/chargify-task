@@ -8,9 +8,10 @@
 #
 
 ##
-# A database record representing a customer.
+# A database record representing a customer of the application.
 #
 class Customer < ApplicationRecord
-  has_many :card_details
-  has_many :shipping_address_details
+  has_many :subscriptions
+  has_many :card_details, :through => :subscriptions
+  has_many :shipping_address_details, :through => :subscriptions
 end

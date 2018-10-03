@@ -33,6 +33,8 @@ gem "money-rails", "~> 1.12.0"
 gem "http", "~> 3.3.0"
 gem "faker", "~> 1.9.1"
 gem "carmen", "~> 1.1.1"
+gem "enumerize", "~> 2.2.2"
+gem "active_model_serializers", "0.10.7"
 
 group :development, :test do
   gem "rspec", "~> 3.8.0"

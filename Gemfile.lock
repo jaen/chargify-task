@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.7)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.1.6)
       activesupport (= 5.1.6)
       globalid (>= 0.3.6)
@@ -54,6 +59,8 @@ GEM
     byebug (10.0.2)
     carmen (1.1.1)
       activesupport (>= 3.0.0)
+    case_transform (0.2)
+      activesupport
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
@@ -109,6 +116,8 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.12.0)
+    enumerize (2.2.2)
+      activesupport (>= 3.2)
     erubi (1.7.1)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -155,6 +164,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
+    jsonapi-renderer (0.2.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -279,6 +289,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (= 0.10.7)
   annotate (~> 2.7.4)
   better_errors
   binding_of_caller
@@ -287,6 +298,7 @@ DEPENDENCIES
   dry-struct (= 0.4.0)
   dry-transaction (= 0.13.0)
   dry-validation (= 0.11.1)
+  enumerize (~> 2.2.2)
   factory_bot (~> 4.11.1)
   factory_bot_rails (~> 4.11.1)
   faker (~> 1.9.1)
