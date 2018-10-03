@@ -10,12 +10,12 @@ module Transactions
       expect(result.failure.dig(:subscription)).to eq ["is missing"]
     end
 
-    it "responds with dummy response when all the data is specified" do
+    it "returns a subscription when all the data is specified" do
       params = build(:create_subscription_params)
       result = CreateSubscription.new.run!(params)
 
       expect(result).to be_success
-      expect(result.success.dig(:subscription, :dummy)).to be true
+      expect(result.success).to be_instance_of Subscription
     end
   end
 end

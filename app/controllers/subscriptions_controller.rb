@@ -4,16 +4,18 @@
 class SubscriptionsController < ApplicationController
   ##
   # A method that creates a subscription using {Transactions::CreateSubscription}[rdoc-ref:Transactions::CreateSubscription].
-  # The endpoint returns either validation error or a dummy value simulating subscription creation.
+  # The endpoint returns either validation error or a persisted {Subscription}[rdoc-ref:Subscription].
   #
   def create
-    run_transaction!(Transactions::CreateSubscription) do |result|
-      result.success do |response|
-        render :json => {:data => response}, :status => :created
+    run_transaction!(Transactions::CreateSubscription) do |on|
+      on.success do |subscription|
+        render :status     => :created,
+               :json       => {:data => {:subscription => subscription}}
       end
 
-      result.failure(:validate) do |response|
-        render :json => {:errors => response}, :status => :unprocessable_entity
+      on.failure do |exception|
+        render :status     => :unprocessable_entity,
+               :json       => {:errors => exception}
       end
     end
   end
