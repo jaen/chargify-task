@@ -27,7 +27,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Fri, 28 Sep 2018 20:14:52 GMT
+      - Wed, 03 Oct 2018 22:04:50 GMT
       Connection:
       - close
       X-Frame-Options:
@@ -45,28 +45,28 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"798501b6f8656388b602a4fb901ef648"
+      - W/"8677ca6cffb0dec078bad71c1c6174f9"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 46042a56-a40b-4229-a4ef-e96c23c71dea
+      - 5adb0875-2ada-4ca7-8c9e-9b12419e2f74
       X-Runtime:
-      - '0.043953'
+      - '0.016997'
       Transfer-Encoding:
       - chunked
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"1aa9435be9483ba7ec6146c4a79fb9","success":true,"error_code":null}'
+      string: '{"token":"f52f980ed07d039297f8b845807b70","success":true,"error_code":null}'
     http_version: 
-  recorded_at: Fri, 28 Sep 2018 20:14:53 GMT
+  recorded_at: Wed, 03 Oct 2018 22:04:50 GMT
 - request:
     method: post
     uri: https://www.fakepay.io/purchase
     body:
       encoding: UTF-8
-      string: '{"amount":1000,"token":"1aa9435be9483ba7ec6146c4a79fb9"}'
+      string: '{"amount":1000,"token":"f52f980ed07d039297f8b845807b70"}'
     headers:
       Authorization:
       - Token FAKE-PAY-DUMMY-TOKEN
@@ -88,7 +88,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Fri, 28 Sep 2018 20:14:52 GMT
+      - Wed, 03 Oct 2018 22:04:50 GMT
       Connection:
       - close
       X-Frame-Options:
@@ -106,20 +106,20 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"798501b6f8656388b602a4fb901ef648"
+      - W/"8677ca6cffb0dec078bad71c1c6174f9"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 05f2517c-85cd-4d0c-a423-e6ed3043e767
+      - e43cd198-f348-4760-9848-8986658d12cd
       X-Runtime:
-      - '0.018709'
+      - '0.013335'
       Transfer-Encoding:
       - chunked
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"1aa9435be9483ba7ec6146c4a79fb9","success":true,"error_code":null}'
+      string: '{"token":"f52f980ed07d039297f8b845807b70","success":true,"error_code":null}'
     http_version: 
-  recorded_at: Fri, 28 Sep 2018 20:14:53 GMT
+  recorded_at: Wed, 03 Oct 2018 22:04:51 GMT
 recorded_with: VCR 4.0.0

@@ -21,10 +21,20 @@ module FakePay
     # incorrect field values).
     #
     class InvalidPurchaseRequest < FakePayError; end
+
+    class InvalidCreditCardNumber < InvalidPurchaseRequest; end
+    class InvalidZipCode          < InvalidPurchaseRequest; end
+    class InvalidPurchaseAmount   < InvalidPurchaseRequest; end
+    class InvalidParameters       < InvalidPurchaseRequest; end
+
     ##
     # An error raised when the FakePay payment gateway declines the payment
     # for some reason (e.g. incorrect security code or insufficient funds).
     #
     class TransactionDenied < FakePayError; end
+
+    class InsufficientFunds        < TransactionDenied; end
+    class SecurityCodeCheckFailure < TransactionDenied; end
+    class ExpiredCard              < TransactionDenied; end
   end
 end

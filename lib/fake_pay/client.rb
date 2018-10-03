@@ -55,21 +55,21 @@ module FakePay
         else
           case response_json[:error_code]
             when 1000001
-              raise Errors::InvalidPurchaseRequest.new("Invalid credit card number")
+              raise Errors::InvalidCreditCardNumber.new("Invalid credit card number")
             when 1000005
-              raise Errors::InvalidPurchaseRequest.new("Invalid zip code")
+              raise Errors::InvalidZipCode.new("Invalid zip code")
             when 1000006
-              raise Errors::InvalidPurchaseRequest.new("Invalid purchase amount")
+              raise Errors::InvalidPurchaseAmount.new("Invalid purchase amount")
             when 1000008
-              raise Errors::InvalidPurchaseRequest.new(
+              raise Errors::InvalidParameters.new(
                 "Invalid parameters: cannot specify both token and card details.")
 
             when 1000002
-              raise Errors::TransactionDenied.new("Insufficient funds")
+              raise Errors::InsufficientFunds.new("Insufficient funds")
             when 1000003
-              raise Errors::TransactionDenied.new("Security code check failure")
+              raise Errors::SecurityCodeCheckFailure.new("Security code check failure")
             when 1000004
-              raise Errors::TransactionDenied.new("Expired card")
+              raise Errors::ExpiredCard.new("Expired card")
 
             when 1000007
               raise Errors::InvalidCardToken.new("Invalid card token")

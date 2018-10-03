@@ -49,14 +49,21 @@ module FakePay
         expect do
           client.purchase!(card_details_request(:card_number => "4242424242424241"))
         end
-          .to raise_error(Errors::InvalidPurchaseRequest, "Invalid credit card number")
+          .to raise_error(Errors::InvalidCreditCardNumber, "Invalid credit card number")
+      end
+
+      it "raises an error when the zip code is invalid" do
+        expect do
+          client.purchase!(card_details_request(:zip_code => "123-ajdskdl-!@#"))
+        end
+          .to raise_error(Errors::InvalidZipCode, "Invalid zip code")
       end
 
       it "raises an error when the purchase amount is invalid" do
         expect do
           client.purchase!(card_details_request(:amount => Money.new(0, :usd)))
         end
-          .to raise_error(Errors::InvalidPurchaseRequest, "Invalid purchase amount")
+          .to raise_error(Errors::InvalidPurchaseAmount, "Invalid purchase amount")
       end
 
       it "raises an error when the card token is invalid" do
@@ -73,21 +80,21 @@ module FakePay
         expect do
           client.purchase!(card_details_request(:security_code => "42"))
         end
-          .to raise_error(Errors::TransactionDenied, "Security code check failure")
+          .to raise_error(Errors::SecurityCodeCheckFailure, "Security code check failure")
       end
 
       it "raises an error when the card has insufficient funds" do
         expect do
           client.purchase!(card_details_request(:card_number => "4242424242420089"))
         end
-          .to raise_error(Errors::TransactionDenied, "Insufficient funds")
+          .to raise_error(Errors::InsufficientFunds, "Insufficient funds")
       end
 
       it "raises an error when the card has expired" do
         expect do
           client.purchase!(card_details_request(:expiration_year => 1337))
         end
-          .to raise_error(Errors::TransactionDenied, "Expired card")
+          .to raise_error(Errors::ExpiredCard, "Expired card")
       end
     end
   end

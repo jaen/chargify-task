@@ -27,7 +27,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Fri, 28 Sep 2018 20:14:56 GMT
+      - Wed, 03 Oct 2018 22:04:52 GMT
       Connection:
       - close
       X-Frame-Options:
@@ -47,9 +47,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - a164d0e1-3a1b-4195-a1b4-35c3a5d0138a
+      - 3bd8f332-53e5-4a97-b902-e7c3f6436fc6
       X-Runtime:
-      - '0.015422'
+      - '0.012474'
       Transfer-Encoding:
       - chunked
       Via:
@@ -58,5 +58,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"token":null,"success":false,"error_code":1000002}'
     http_version: 
-  recorded_at: Fri, 28 Sep 2018 20:14:56 GMT
+  recorded_at: Wed, 03 Oct 2018 22:04:53 GMT
 recorded_with: VCR 4.0.0
