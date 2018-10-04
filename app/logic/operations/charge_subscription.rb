@@ -11,18 +11,35 @@ module Operations
     ##
     # Executes the operation.
     #
-    # @param [Subscription]
-    #   subscription subscription to bill.
+    # @param [Subscription] subscription
+    #  subscription to bill.
     #
-    # @param [Hash]
-    #   billing_details details of card to bill.
+    # @param [Hash] billing_details
+    #   details of card to bill.
     #
-    def call(subscription, billing_details:)
+    # @param [Hash] card_details_id
+    #   an id a {CardDetails}[rdoc-ref:CardDetails]} database model storing a token
+    #   of card to bill.
+    #
+    def call(subscription, billing_details: nil, card_details_id: nil)
+      unless billing_details.present? ^ card_details_id.present?
+        raise ArgumentError.new("Either :billing_details or :card_details_id has to be specified")
+      end
+
       begin
-        response = fake_pay_client.purchase!(
+        request = if billing_details
           FakePay::CardDetailsPurchaseRequest.new(
             :amount => subscription.subscription_level.price,
-            **billing_details))
+            **billing_details)
+        else
+          card_details = CardDetails.find(card_details_id)
+
+          FakePay::CardTokenPurchaseRequest.new(
+            :amount     => subscription.subscription_level.price,
+            :card_token => card_details.card_token)
+        end
+
+        response = fake_pay_client.purchase!(request)
 
         card_details = CardDetails.new(
           :card_token => response.card_token,

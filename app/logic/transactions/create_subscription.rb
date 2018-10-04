@@ -42,7 +42,7 @@ module Transactions
     end
 
     def charge!(subscription)
-      result = super(subscription, :billing_details => self.payment_params[:billing_details])
+      result = super(subscription, **self.payment_params)
 
       map_fake_pay_failure(result)
     end

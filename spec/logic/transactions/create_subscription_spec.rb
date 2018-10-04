@@ -41,5 +41,36 @@ module Transactions
       expect(result).to be_success
       expect(result.success).to be_instance_of Subscription
     end
+
+    it "returns a subscription when using an existing customer and all the data is specified" do
+      existing_subscription = CreateSubscription.new.run!(build(:create_subscription_params)).success
+      customer = existing_subscription.customer
+
+      params = build(:create_subscription_params)
+      params[:subscription].delete(:shipping_address_details)
+      params[:subscription][:customer_id] = customer.id
+
+      result = CreateSubscription.new.run!(params)
+
+      expect(result).to be_success
+      expect(result.success).to be_instance_of Subscription
+    end
+
+    it "returns a subscription when using an existing customer and and an existing card and all the data is specified" do
+      existing_subscription = CreateSubscription.new.run!(build(:create_subscription_params)).success
+      customer = existing_subscription.customer
+      card_details = customer.card_details.first
+
+      params = build(:create_subscription_params)
+      params[:subscription].delete(:shipping_address_details)
+      params[:subscription][:customer_id] = customer.id
+      params[:payment].delete(:billing_details)
+      params[:payment][:card_details_id] = card_details.id
+
+      result = CreateSubscription.new.run!(params)
+
+      expect(result).to be_success
+      expect(result.success).to be_instance_of Subscription
+    end
   end
 end
