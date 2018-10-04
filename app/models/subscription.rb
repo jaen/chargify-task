@@ -26,4 +26,17 @@ class Subscription < ApplicationRecord
   belongs_to :shipping_address_details
   has_many   :subscription_payments
   has_many   :card_details, :through => :subscription_payments
+  has_one    :last_successful_payment, -> { with_status(:success).limit(1) }, :class_name => "SubscriptionPayment"
+
+  ##
+  # @param [DateTime] date the the validity of subscription is to be tested at (always rounded to the end of the day).
+  # @return [Boolean] +true+ if the subscription is valid on the given +date+, +false otherwise.
+  #
+  def subscription_valid?(date = DateTime.now)
+    if last_successful_payment
+      date.end_of_day <= last_successful_payment.valid_to
+    else
+      false
+    end
+  end
 end
