@@ -50,6 +50,29 @@ module Validators
       end
     end
 
+    it "is invalid when neither customer model reference or shipping address details are properly specified" do
+      params = build(:create_subscription_params)
+      params[:subscription].delete(:shipping_address_details)
+
+      result = CreateSubscription.new(params).validate
+
+      expect(result).to be_failure
+      expect(result.failure.dig(:subscription, :shipping_address_details).uniq).to eq(["must be filled"])
+      expect(result.failure.dig(:subscription, :customer_id).uniq).to eq(["must be filled"])
+    end
+
+    it "is valid when a customer model reference is properly specified" do
+      customer = create(:customer)
+      params = build(:create_subscription_params)
+      params[:subscription].delete(:shipping_address_details)
+      params[:subscription][:customer_id] = customer.id
+
+      result = CreateSubscription.new(params).validate
+
+      expect(result).to be_success
+      expect(result.success.dig(:subscription, :customer_id)).to eq(customer.id)
+    end
+
     it "is invalid when no billing method attribute is properly specified" do
       params = build(:create_subscription_params)
       params[:payment].delete(:billing_details)

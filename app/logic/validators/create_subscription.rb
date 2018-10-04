@@ -27,14 +27,28 @@ module Validators
   ##
   # A validator for parameters required to create a subscription.
   #
-  # Of note is the fact that it requires either of +:billing_details+ or +:card_details_id+ to
-  # be filled for billing, but not both at the same time.
+  # In +:subscription+ data either an existing {Customer}[rdoc-ref:Customer] database model can be associated
+  # with the subscription by passing the +:customer_id+ parameter or a new customer can be created for a specified
+  # shipping address by passing the +:shipping_address_details+ parameter. Both can't be specified at the same time.
+  #
+  # In +:payment` data either an existing {CardDetails}[rdoc-ref:CardDetails] database model can be associated with
+  # the subscription by passing the +:card_details_id+ parameter or a new card can be charged and stored by passing
+  # the +:billing_details+ parameter. Both can't be specified at the same time.
   #
   class CreateSubscription < Base
     validations do
       required(:subscription).schema do
-        required(:shipping_address_details).schema(ShippingAddressDetails)
+        optional(:shipping_address_details).schema(ShippingAddressDetails)
+        optional(:customer_id).filled(:associated? => Customer)
         required(:subscription_level_id).filled(:associated? => SubscriptionLevel)
+
+        rule(:subscription => {:customer_id => [:shipping_address_details, :customer_id]}) do |shipping_address_details, customer_id|
+          value(:shipping_address_details).filled? ^ value(:customer_id).filled?
+        end
+
+        rule(:subscription => {:shipping_address_details => [:shipping_address_details, :customer_id]}) do |shipping_address_details, customer_id|
+          value(:shipping_address_details).filled? ^ value(:customer_id).filled?
+        end
       end
 
       required(:payment).schema do
